@@ -1,18 +1,21 @@
 class HttpService {
 
-    static urlBase = 'https://api.github.com/';
+    // static urlBase = 'https://api.github.com/';
 
-    _handleErrors(res) {
-        if (!res.ok) throw new Error(res.statusText);
-        return res;
-    }
+    // _handleErrors(res) {
+    //     if (!res.ok) throw new Error(res.statusText);
+    //     return res;
+    // }
 
     get(endpoint) {
-
+console.log(urlBase + endpoint);
         return fetch(urlBase + endpoint)
-            .then(res => res.json()
-                .catch(error => alert(error))
-            );
+            .then(res => {
+                res.json()
+                console.log(res);
+            })
+            .catch(error => alert(error))
+            ;
     }
 
     post(endpoint, dado) {

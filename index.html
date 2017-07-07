@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Desbravador - Github</title>
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
-
-    <h1>Olá, mundo!</h1>
-
+<body>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="container">
+        <div id="app"></div>
+    </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+   
+   
+    <script src="js/app/views/buttonsearchview.js"></script>
+    <script src="js/app/controllers/usercontroller.js"></script>
+    <script src="js/app/services/httpservice.js"></script>
+    
+    
+    <script>
+        var usercontroller = new UserController();
+    </script>
+
+
+</body>
+
 </html>
