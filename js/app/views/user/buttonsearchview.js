@@ -2,11 +2,16 @@ class ButonSearchView {
 
     constructor() {
         let E = document.querySelector.bind(document);
-        this.element = E("#app");
+        this.element = E("#appInput");
+        this.findUser = E("#findUser");
     }
 
     update() {
         this.element.innerHTML = this.template();
+    }
+
+    getInput() {
+        return this.findUser;
     }
 
     template() {

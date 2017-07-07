@@ -1,17 +1,18 @@
 class UserController {
 
     constructor() {
-        let template = new ButonSearchView();
-        template.update();
+        new MasterView();
 
-        let E = document.querySelector.bind(document);
-        this.findUser = E("#findUser");
+        this.inputComponent = new ButonSearchView();
+        this.inputComponent.update();
+
         this.userService = new UserService();
         this.httpService = new HttpService();
     }
 
     get user() {
-        let response = this.userService.user(this.findUser.value).then(success => {
+        
+        let response = this.userService.user(this.inputComponent.getInput()).then(success => {
 
             let user = new UserDetails(
                 success.followers,
