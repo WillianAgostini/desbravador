@@ -5,18 +5,10 @@ class MasterView {
         this.element = E("#app");
         console.log(this.element)
        this.element.innerHTML = `
-        <div id="appInput"></div>
-        <div id="appBody"></div>
-        <div id="appList"></div>
+        <div id="appInput"></div><br>
+        <div id="appBody"></div><br>
+        <div id="appList"></div><br>
     `;
     }
 
-
-    template() {
-        this.element.innerHTML = `
-        <div id="appInput"></div>
-        <div id="appBody"></div>
-        <div id="appList"></div>
-    `
-    }
 }

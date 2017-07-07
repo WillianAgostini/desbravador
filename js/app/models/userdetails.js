@@ -1,10 +1,10 @@
 class UserDetails {
 
-    constructor(numeroDeSeguidores, numeroDeSeguidos, imagemDoAvatar, e_mail, bio, login) {
+    constructor(numeroDeSeguidores, numeroDeSeguidos, imagemDoAvatar, email, bio, login) {
         this.numeroDeSeguidores = numeroDeSeguidores;
         this.numeroDeSeguidos = numeroDeSeguidos;
         this.imagemDoAvatar = imagemDoAvatar;
-        this.e_mail = e_mail;
+        this.email = email;
         this.bio = bio;
         this.login = login;
 

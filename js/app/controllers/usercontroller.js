@@ -11,7 +11,7 @@ class UserController {
     }
 
     get user() {
-        
+
         let response = this.userService.user(this.inputComponent.getInput()).then(success => {
 
             let user = new UserDetails(
@@ -41,15 +41,16 @@ class UserController {
                     // console.log(element.stargazers_count);
                 }, this);
 
-                let itens = result.sort(x => x.stargazers_count).reverse()      ;
+                let itens = result.sort(x => x.stargazers_count).reverse();
 
                 let viewRepositories = new ListRepositoriesView();
                 viewRepositories.template(itens);
             });
     }
 
-    orderBy(order){
-console.log(order);
+    orderBy(order) {
+        console.log(order);
+        // viewRepositories.template(order.reverse());
     }
 
 }

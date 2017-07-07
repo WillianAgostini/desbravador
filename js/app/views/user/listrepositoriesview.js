@@ -5,15 +5,19 @@ class ListRepositoriesView {
         this.element = E("#appList");
     }
 
-    template(model) {
+    orderBy() {
+        alert('show')
+    }
 
-        this.element.innerHTML = `
+    template(model) {
+        this.model = model;
+        let table = `
             <div>
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
-                            <th onclick="usercontroller.orderBy(name)"> Name </th>
-                            <th onclick="usercontroller.orderBy(stargazers_count)">Star</th>
+                            <th id="NameTable"> Name </th>
+                            <th id="StarTable">Star</th>
                         </tr>
                     </thead>
 
@@ -27,12 +31,38 @@ class ListRepositoriesView {
                     </tbody>
                 </table>
             </div>
-
-
-        
-    }
-
         `;
+
+        this.element.innerHTML = `
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne" href="#collapseOne" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne" >
+                    <h4 class="panel-title">
+                            Repositorios
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body list-group">
+                        ${table}
+                    </div>
+                </div>
+            </div>
+        </div>
+`;
+        let element = document.getElementById('StarTable')
+        if (element) {
+            element.onclick = () => {
+                this.template(this.model.reverse())
+            }
+        }
+
+        let elementName = document.getElementById('NameTable')
+        if (elementName) {
+            elementName.onclick = () => {
+                this.template(this.model.sort(x => x.name))
+            }
+        }
+
     }
 
 }
