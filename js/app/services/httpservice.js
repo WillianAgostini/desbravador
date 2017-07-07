@@ -5,19 +5,9 @@ class HttpService {
     }
 
 
-
-    // _handleErrors(res) {
-    //     if (!res.ok) throw new Error(res.statusText);
-    //     return res;
-    // }
-
-    get(endpoint) {
-        console.log(this.urlBase + endpoint);
-        return fetch(this.urlBase + endpoint);
-            // .then(res => {
-            //     console.log(res.json());
-            // })
-            // .catch(error => alert(error));
+    get(endpoint, useUrlBase = true) {
+        let url = (useUrlBase) ? this.urlBase : "";
+        return fetch(url + endpoint);
     }
 
     post(endpoint, dado) {
