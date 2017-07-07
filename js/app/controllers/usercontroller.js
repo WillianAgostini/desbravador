@@ -30,13 +30,20 @@ class UserController {
 
     }
 
-  repositories(url) {
+    repositories(url) {
         this.httpService.get(url, false)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                result.forEach((element) => {
+                    // console.log(element.name);
+                    // console.log(element.stargazers_count);
+                }, this);
 
+                let itens = result.sort(x => x.stargazers_count).reverse();
 
+                let viewRepositories = new ListRepositoriesView();
+                viewRepositories.template(itens);
             });
     }
 
