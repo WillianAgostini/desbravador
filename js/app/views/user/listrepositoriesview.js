@@ -19,8 +19,8 @@ class ListRepositoriesView {
 
                     <tbody>
                         ${model.map(x => `
-                        <tr>
-                            <td> ${x.name} </td>
+                        <tr onclick="usercontroller.GetRepository(this)">
+                            <td id="value"> ${x.full_name} </td>
                             <td> ${x.stargazers_count} </td>
                         </tr>
                         `)}

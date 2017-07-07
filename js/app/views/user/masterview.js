@@ -8,6 +8,8 @@ class MasterView {
         <div id="appInput"></div><br>
         <div id="appBody"></div><br>
         <div id="appList"></div><br>
+        <div id="appModal"></div><br>
+        
     `;
     }
 

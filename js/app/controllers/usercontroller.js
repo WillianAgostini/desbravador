@@ -14,6 +14,11 @@ class UserController {
         this.findUser = E("#findUser");
     }
 
+    GetRepository(obj) {
+        let repository = new RepositoryController();
+        repository.Get(obj.cells.value.innerText);
+    }
+
     get user() {
         let response = this.userService.user(this.findUser.value)
             // .then(response => response.json())
@@ -57,10 +62,6 @@ class UserController {
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                result.forEach((element) => {
-                    // console.log(element.name);
-                    // console.log(element.stargazers_count);
-                }, this);
 
                 let itens = result.sort(x => x.stargazers_count).reverse();
 

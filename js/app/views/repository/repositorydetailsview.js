@@ -1,3 +1,24 @@
-class RepositoryDetailsView{
+class RepositoryDetailsView {
+
+  constructor() {
+    let E = document.querySelector.bind(document);
+    this.element = E("#app");
+  }
+
+  template(model) {
+    this.element.innerHTML = `
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">${model.name}</h3>
+              </div>
+              <div class="panel-body">
+                <p> Descição: ${model.description} </p>
+                <p> Linguagem: ${model.language} </p>
+                <p> ${model.stargazers_count} stars </p>
+                <a href="${model.clone_url}">${model.clone_url}</a>
+              </div>
+            </div>
+        `
+  }
 
 }
