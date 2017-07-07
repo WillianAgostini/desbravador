@@ -7,9 +7,8 @@ class UserService {
 
     user(user) {
         return this._connection.get('users/' + 'WillianAgostini')
-            .then(response => response.json()) // retorna uma promise
+            .then(response => response.json())
             .then(result => {
-                console.log(result);
                 return result;
             })
 

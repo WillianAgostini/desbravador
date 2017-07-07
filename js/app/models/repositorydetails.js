@@ -8,4 +8,7 @@ export class RepositoryDetails {
         this.url;
     }
 
+
+    
+
 }

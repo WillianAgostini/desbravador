@@ -1,11 +1,12 @@
-export class UserDetails {
+ class UserDetails {
 
-    constructor() {
-        this.númeroDeSeguidores = '';
-        this.númeroDeSeguidos = '';
-        this.imagemDoAvatar = '';
-        this.e_mail ='';
-        this.bio = '';
+    constructor(numeroDeSeguidores,numeroDeSeguidos,imagemDoAvatar,e_mail,bio,login) {
+        this.numeroDeSeguidores = numeroDeSeguidores;
+        this.numeroDeSeguidos = numeroDeSeguidos;
+        this.imagemDoAvatar = imagemDoAvatar;
+        this.e_mail =e_mail;
+        this.bio = bio;
+        this.login = login
     }
 
 
