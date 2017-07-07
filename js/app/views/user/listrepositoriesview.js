@@ -8,20 +8,20 @@ class ListRepositoriesView {
     template(model) {
         this.model = model;
         let table = `
-            <div>
-                <table class="table table-hover table-striped">
+            <div class="container">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th id="NameTable"> Name </th>
                             <th id="StarTable">Star <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </th>
+                            <th id="NameTable"> Name </th>
                         </tr>
                     </thead>
 
                     <tbody>
                         ${model.map(x => `
                         <tr onclick="usercontroller.GetRepository(this)">
-                            <td id="value"> ${x.full_name} </td>
                             <td> ${x.stargazers_count} </td>
+                            <td id="value"> ${x.full_name} </td>
                         </tr>
                         `)}
                     </tbody>
