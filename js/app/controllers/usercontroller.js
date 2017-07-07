@@ -40,11 +40,15 @@ class UserController {
                     // console.log(element.stargazers_count);
                 }, this);
 
-                let itens = result.sort(x => x.stargazers_count).reverse();
+                let itens = result.sort(x => x.stargazers_count).reverse()      ;
 
                 let viewRepositories = new ListRepositoriesView();
                 viewRepositories.template(itens);
             });
+    }
+
+    orderBy(order){
+console.log(order);
     }
 
 }

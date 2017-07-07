@@ -8,17 +8,28 @@ class ListRepositoriesView {
     template(model) {
 
         this.element.innerHTML = `
+            <div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th onclick="usercontroller.orderBy(name)"> Name </th>
+                            <th onclick="usercontroller.orderBy(stargazers_count)">Star</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        ${model.map(x => `
+                        <tr>
+                            <td> ${x.name} </td>
+                            <td> ${x.stargazers_count} </td>
+                        </tr>
+                        `)}
+                    </tbody>
+                </table>
+            </div>
 
 
-    ${model.map(x => ` 
-            ${
-                x.name
-                }: 
-            ${
-                x.stargazers_count
-                } stars
-        <br>
-        `)}
+        
     }
 
         `;
