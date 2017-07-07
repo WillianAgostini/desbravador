@@ -5,10 +5,6 @@ class ListRepositoriesView {
         this.element = E("#appList");
     }
 
-    orderBy() {
-        alert('show')
-    }
-
     template(model) {
         this.model = model;
         let table = `
@@ -17,7 +13,7 @@ class ListRepositoriesView {
                     <thead>
                         <tr>
                             <th id="NameTable"> Name </th>
-                            <th id="StarTable">Star</th>
+                            <th id="StarTable">Star <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span> </th>
                         </tr>
                     </thead>
 
@@ -34,14 +30,14 @@ class ListRepositoriesView {
         `;
 
         this.element.innerHTML = `
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
             <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne" href="#collapseOne" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne" >
+                <div  class="panel-heading" role="tab" id="headingOne" href="#collapseOne" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne" >
                     <h4 class="panel-title">
                             Repositorios
                     </h4>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div expanded="false" id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body list-group">
                         ${table}
                     </div>

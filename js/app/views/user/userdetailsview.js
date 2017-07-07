@@ -9,6 +9,11 @@ class UserDetailsView {
     //     this.element.innerHTML = this.template();
     // }
 
+setError(message){
+    this.element.innerHTML = ` <h5>${message}</h5> 
+    ` 
+}
+
     template(model) {
 
         this.element.innerHTML = `

@@ -15,22 +15,40 @@ class UserController {
     }
 
     get user() {
-        let response = this.userService.user(this.findUser.value).then(success => {
+        let response = this.userService.user(this.findUser.value)
+            // .then(response => response.json())
+            .then(async (response) => {
+                let viewUser = new UserDetailsView();
 
-            let user = new UserDetails(
-                success.followers,
-                success.following,
-                success.avatar_url,
-                success.email,
-                success.bio,
-                success.login
-            );
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    response.json().then(x => viewUser.setError(x.message))
+                    return;
+                }
 
-            let viewUser = new UserDetailsView();
-            viewUser.template(user);
 
-            this.repositories(success.repos_url);
-        });
+                // if (response.status > 400) {
+                //     response.json().then(x => this.inputComponent.setError(x.message))
+                //     return;
+                // }
+                let success = await response.json();
+                let user = new UserDetails(
+                    success.followers,
+                    success.following,
+                    success.avatar_url,
+                    success.email,
+                    success.bio,
+                    success.login
+                );
+
+
+                viewUser.template(user);
+
+                this.repositories(success.repos_url);
+            }).catch(error => {
+                console.log(error)
+            });
 
     }
 

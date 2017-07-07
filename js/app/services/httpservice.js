@@ -7,7 +7,9 @@ class HttpService {
 
     get(endpoint, useUrlBase = true) {
         let url = (useUrlBase) ? this.urlBase : "";
-        return fetch(url + endpoint);
+        console.log(url + endpoint);
+        return fetch(url + endpoint)
+        ;
     }
 
     post(endpoint, dado) {
