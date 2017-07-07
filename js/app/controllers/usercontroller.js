@@ -5,7 +5,7 @@ class UserController {
 
         this.inputComponent = new ButonSearchView();
         this.inputComponent.update();
-
+        this.viewRepositories = new ListRepositoriesView();
         this.userService = new UserService();
         this.httpService = new HttpService();
 
@@ -28,7 +28,10 @@ class UserController {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
-                    response.json().then(x => viewUser.setError(x.message))
+                    response.json().then(x => {
+                        viewUser.setError(x.message);
+                        this.viewRepositories.clear();
+                    })
                     return;
                 }
 
@@ -65,8 +68,8 @@ class UserController {
 
                 let itens = result.sort(x => x.stargazers_count).reverse();
 
-                let viewRepositories = new ListRepositoriesView();
-                viewRepositories.template(itens);
+
+                this.viewRepositories.template(itens);
             });
     }
 

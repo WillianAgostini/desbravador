@@ -10,7 +10,7 @@ class UserDetailsView {
     // }
 
 setError(message){
-    this.element.innerHTML = ` <h5>${message}</h5> 
+    this.element.innerHTML = ` <h5 style="color: white" >${message}</h5> 
     ` 
 }
 
