@@ -33,7 +33,6 @@ class RepositoryDetailsView {
   }
 
   back() {
-    alert('works');
     this.element.innerHTML = localStorage.getItem('masterHtml');
   }
 
