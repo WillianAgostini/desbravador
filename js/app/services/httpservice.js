@@ -1,6 +1,10 @@
 class HttpService {
 
-    // static urlBase = 'https://api.github.com/';
+    constructor() {
+        this.urlBase = 'https://api.github.com/';
+    }
+
+
 
     // _handleErrors(res) {
     //     if (!res.ok) throw new Error(res.statusText);
@@ -8,11 +12,10 @@ class HttpService {
     // }
 
     get(endpoint) {
-console.log(urlBase + endpoint);
-        return fetch(urlBase + endpoint)
+        console.log(this.urlBase + endpoint);
+        return fetch(this.urlBase + endpoint)
             .then(res => {
-                res.json()
-                console.log(res);
+                console.log(res.json());
             })
             .catch(error => alert(error))
             ;
@@ -20,7 +23,7 @@ console.log(urlBase + endpoint);
 
     post(endpoint, dado) {
 
-        return fetch(urlBase + endpoint, {
+        return fetch(this.urlBase + endpoint, {
             headers: { 'Content-type': 'application/json' },
             method: 'post',
             body: JSON.stringify(dado)

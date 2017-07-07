@@ -1,5 +1,5 @@
 
- class UserController {
+class UserController {
 
     constructor() {
         let template = new ButonSearchView();
@@ -8,12 +8,12 @@
         let E = document.querySelector.bind(document);
         this.findUser = E("#findUser");
 
-        // this.connection = new HttpService();
+        this.connection = new HttpService();
     }
 
     get user() {
         console.log(this.findUser.value);
-        // this.connection.get('users/' + this.findUser.value);
+        this.connection.get('users/' + this.findUser.value);
     }
 
 
