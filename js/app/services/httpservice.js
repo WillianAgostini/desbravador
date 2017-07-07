@@ -13,12 +13,11 @@ class HttpService {
 
     get(endpoint) {
         console.log(this.urlBase + endpoint);
-        return fetch(this.urlBase + endpoint)
-            .then(res => {
-                console.log(res.json());
-            })
-            .catch(error => alert(error))
-            ;
+        return fetch(this.urlBase + endpoint);
+            // .then(res => {
+            //     console.log(res.json());
+            // })
+            // .catch(error => alert(error));
     }
 
     post(endpoint, dado) {
