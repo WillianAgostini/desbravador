@@ -8,11 +8,14 @@ class UserController {
 
         this.userService = new UserService();
         this.httpService = new HttpService();
+
+
+        let E = document.querySelector.bind(document);
+        this.findUser = E("#findUser");
     }
 
     get user() {
-
-        let response = this.userService.user(this.inputComponent.getInput()).then(success => {
+        let response = this.userService.user(this.findUser.value).then(success => {
 
             let user = new UserDetails(
                 success.followers,

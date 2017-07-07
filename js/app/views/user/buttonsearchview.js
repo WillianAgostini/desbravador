@@ -3,7 +3,7 @@ class ButonSearchView {
     constructor() {
         let E = document.querySelector.bind(document);
         this.element = E("#appInput");
-        this.findUser = E("#findUser");
+        
     }
 
     update() {
@@ -11,6 +11,7 @@ class ButonSearchView {
     }
 
     getInput() {
+        console.log(this.findUser);
         return this.findUser;
     }
 
