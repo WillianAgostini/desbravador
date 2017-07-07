@@ -9,8 +9,9 @@ class RepositoryDetailsView {
     localStorage.setItem('masterHtml',this.element.innerHTML);
     console.log(this.element.innerHTML);
     this.element.innerHTML = `
-    <button id="pressBack" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
-            <br>
+    <div class="row container">
+     <button id="pressBack" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button>
+            </div>  
             <div class="panel panel-primary">
               <div class="panel-heading">
                 <h3 class="panel-title">${model.name}</h3>

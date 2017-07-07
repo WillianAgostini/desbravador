@@ -4,7 +4,9 @@ class ListRepositoriesView {
         let E = document.querySelector.bind(document);
         this.element = E("#appList");
     }
-
+clear(){
+    this.element.innerHTML = "";
+}
     template(model) {
         this.model = model;
         let table = `
