@@ -2,11 +2,16 @@ var express = require("express");
 var app = express();
 var path = require("path");
 
-app.use('/', express.static(__dirname + '/'));
+var port = process.env.PORT || 8080;
 
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname + '/index.html'));
-//   //__dirname : It will resolve to your project folder.
-// });
+app.use('/node_modules/', express.static(__dirname + '/node_modules/'));
+app.use('/js/', express.static(__dirname + '/js/'));
+app.use('/img/', express.static(__dirname + '/img/'));
+app.use('/css/', express.static(__dirname + '/css/'));
 
-app.listen(3000);
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+  //__dirname : It will resolve to your project folder.
+});
+
+app.listen(port);
