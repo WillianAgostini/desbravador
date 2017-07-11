@@ -10,15 +10,16 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.handleChange = this.handleChange.bind(this)
+
     this.state = { valor: "" };
-    console.log(this);
   }
 
-  getInitialState() {
-    return {
-      value: ""
-    };
-  }
+  // getInitialState() {
+  //   return {
+  //     value: ""
+  //   };
+  // }
 
   getValidationState() {
     let length = this.state.valor.length;
@@ -27,10 +28,15 @@ class Home extends React.Component {
     else if (length > 0) return "error";
   }
 
-  handleChange(e) {
-    console.log(e.target);
-    // this.setState({ valor: e.target.value });
-  }
+  handleChange = e => {
+    this.setState({ valor: e.target.value });
+  };
+
+  keyPress = (event) => {
+    if (event.key === "Enter") {
+      alert("enter");
+    }
+  };
 
   render() {
     return (
@@ -45,6 +51,7 @@ class Home extends React.Component {
             value={this.state.valor}
             placeholder="Enter text"
             onChange={this.handleChange}
+            onKeyPress={this.keyPress}
           />
           <FormControl.Feedback />
           <HelpBlock>Validation is based on string length.</HelpBlock>
