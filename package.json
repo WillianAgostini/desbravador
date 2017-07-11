@@ -5,7 +5,6 @@
   "dependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^4.0.1",
-    "prettier": "^1.5.2",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
@@ -18,5 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "prettier": "^1.5.2"
   }
 }
