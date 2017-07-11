@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class Details extends Component {
-  
   render(props) {
     return (
       <div className="panel panel-default">

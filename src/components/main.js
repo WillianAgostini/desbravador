@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Home from "../views/home";
 import Schedule from "../views/schedule";
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from "react-router-dom";
 
 class Main extends Component {
   render() {
