@@ -15,7 +15,8 @@ class Home extends React.Component {
 
     this.state = {
       valor: "",
-      object: {}
+      object: {},
+      validationState: ""
     };
   }
 
@@ -25,18 +26,19 @@ class Home extends React.Component {
   //   };
   // }
 
-  getValidationState() {
-    let length = this.state.valor.length;
-    if (length > 10) return "success";
-    else if (length > 5) return "warning";
-    else if (length > 0) return "error";
-  }
+  // getValidationState() {
+  //   let length = this.state.valor.length;
+  //   if (length > 10) return "success";
+  //   else if (length > 5) return "warning";
+  //   else if (length > 0) return "error";
+  // }
 
   handleChange = e => {
     this.setState({ valor: e.target.value });
   };
 
   keyPress = event => {
+    this.setState({ validationState: "warning" });
     if (event.key === "Enter") {
       event.preventDefault();
       this.getUser();
@@ -45,15 +47,18 @@ class Home extends React.Component {
 
   getUser() {
     let url = "https://api.github.com/users/" + this.state.valor;
-    fetch(url)
-      .then(async status => {
-        if (status.ok) {
-          let response = await status.json();
-          console.log(response);
-          this.setState({ object: response });
-        }
-      })
-      .catch(error => console.warn(error));
+    fetch(url).then(async status => {
+      if (!status.ok) {
+        this.setState({ validationState: "error" });
+        console.warn(status);
+      }
+
+      let response = await status.json();
+      console.log(response);
+
+      this.setState({ validationState: "success" });
+      this.setState({ object: response });
+    });
   }
 
   render() {
@@ -62,20 +67,18 @@ class Home extends React.Component {
         <form>
           <FormGroup
             controlId="formBasicText"
-            validationState={this.getValidationState()}
+            validationState={this.state.validationState}
           >
-            <ControlLabel>Working example with validation</ControlLabel>
             <FormControl
               type="text"
               value={this.state.valor}
-              placeholder="Enter text"
+              placeholder="Find user..."
               onChange={this.handleChange}
-              onKeyPress={this.keyPress}
+              onKeyPress={this.keyPress}              
             />
             <FormControl.Feedback />
-            <HelpBlock>Validation is based on string length.</HelpBlock>
           </FormGroup>
-          <Details valor={this.state.object} />
+          <Details userDetails={this.state.object} />
         </form>
       </div>
     );
