@@ -5,6 +5,7 @@ import {
   ControlLabel,
   HelpBlock
 } from "react-bootstrap";
+import Details from "./details";
 
 class Home extends React.Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class Home extends React.Component {
 
     // this.handleChange = this.handleChange.bind(this)
 
-    this.state = { valor: "" };
+    this.state = {
+      valor: "",
+      object: {}
+    };
   }
 
   // getInitialState() {
@@ -32,31 +36,48 @@ class Home extends React.Component {
     this.setState({ valor: e.target.value });
   };
 
-  keyPress = (event) => {
+  keyPress = event => {
     if (event.key === "Enter") {
-      alert("enter");
+      event.preventDefault();
+      this.getUser();
     }
   };
 
+  getUser() {
+    let url = "https://api.github.com/users/" + this.state.valor;
+    fetch(url)
+      .then(async status => {
+        if (status.ok) {
+          let response = await status.json();
+          console.log(response);
+          this.setState({ object: response });
+        }
+      })
+      .catch(error => console.warn(error));
+  }
+
   render() {
     return (
-      <form>
-        <FormGroup
-          controlId="formBasicText"
-          validationState={this.getValidationState()}
-        >
-          <ControlLabel>Working example with validation</ControlLabel>
-          <FormControl
-            type="text"
-            value={this.state.valor}
-            placeholder="Enter text"
-            onChange={this.handleChange}
-            onKeyPress={this.keyPress}
-          />
-          <FormControl.Feedback />
-          <HelpBlock>Validation is based on string length.</HelpBlock>
-        </FormGroup>
-      </form>
+      <div className="container">
+        <form>
+          <FormGroup
+            controlId="formBasicText"
+            validationState={this.getValidationState()}
+          >
+            <ControlLabel>Working example with validation</ControlLabel>
+            <FormControl
+              type="text"
+              value={this.state.valor}
+              placeholder="Enter text"
+              onChange={this.handleChange}
+              onKeyPress={this.keyPress}
+            />
+            <FormControl.Feedback />
+            <HelpBlock>Validation is based on string length.</HelpBlock>
+          </FormGroup>
+          <Details valor={this.state.object} />
+        </form>
+      </div>
     );
   }
 }
