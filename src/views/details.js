@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 class Details extends Component {
   render(props) {
+    if (this.props.userDetails.login == null) return <div />;
+
     return (
       <div className="panel panel-default">
         <div className="panel-heading">

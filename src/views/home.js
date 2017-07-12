@@ -6,32 +6,21 @@ import {
   HelpBlock
 } from "react-bootstrap";
 import Details from "./details";
+import DetailsRepository from "./detailsrepository";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       valor: "",
       object: {},
-      validationState: ""
+      validationState: null,
+      repository: []
     };
   }
-
-  // getInitialState() {
-  //   return {
-  //     value: ""
-  //   };
-  // }
-
-  // getValidationState() {
-  //   let length = this.state.valor.length;
-  //   if (length > 10) return "success";
-  //   else if (length > 5) return "warning";
-  //   else if (length > 0) return "error";
-  // }
 
   handleChange = e => {
     this.setState({ valor: e.target.value });
@@ -41,23 +30,37 @@ class Home extends React.Component {
     this.setState({ validationState: "warning" });
     if (event.key === "Enter") {
       event.preventDefault();
-      this.getUser();
+      this.getUser(this.state.valor);
     }
   };
 
-  getUser() {
-    let url = "https://api.github.com/users/" + this.state.valor;
-    fetch(url).then(async status => {
-      if (!status.ok) {
+  getUser(user) {
+    let url = "https://api.github.com/users/" + user;
+    fetch(url).then(async response => {
+      if (!response.ok) {
         this.setState({ validationState: "error" });
-        console.warn(status);
+        console.warn(response);
       }
 
-      let response = await status.json();
-      console.log(response);
+      let json = await response.json();
+      console.log(json);
 
       this.setState({ validationState: "success" });
-      this.setState({ object: response });
+      this.setState({ object: json });
+      this.getRepository(json.repos_url);
+    });
+  }
+
+  getRepository(url) {
+    fetch(url).then(async response => {
+      if (!response.ok) {
+        this.setState({ validationState: "error" });
+        console.warn(response);
+      }
+
+      let json = await response.json();
+      this.setState({ repository: json });
+      console.log(json);
     });
   }
 
@@ -74,11 +77,12 @@ class Home extends React.Component {
               value={this.state.valor}
               placeholder="Find user..."
               onChange={this.handleChange}
-              onKeyPress={this.keyPress}              
+              onKeyPress={this.keyPress}
             />
             <FormControl.Feedback />
           </FormGroup>
           <Details userDetails={this.state.object} />
+          <DetailsRepository repositoryDetails={this.state.repository} />
         </form>
       </div>
     );
