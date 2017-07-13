@@ -4,8 +4,6 @@ class DetailsRepository extends Component {
   constructor(props) {
     super(props);
 
-    // this.handleChange = this.handleChange.bind(this)
-
     this.getRepository = this.getRepository.bind(this);
     // this.state = {
     //   repository: []
@@ -18,11 +16,17 @@ class DetailsRepository extends Component {
   };
 
   getRepository(url) {
-    console.log(url);
+    fetch(url).then(async response => {
+      if (!response.ok) {
+        console.warn(response);
+      }
+      let json = await response.json();
+      console.log(json);
+    });
   }
 
   render(props) {
-    if (this.props.repositoryDetails.length == 0) return <div />;
+    if (this.props.repositoryDetails.length === 0) return <div />;
     return (
       <div
         className="panel-group"

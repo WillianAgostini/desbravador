@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-import {
-  FormGroup,
-  FormControl,
-  ControlLabel,
-  HelpBlock
-} from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
 import Details from "./details";
 import DetailsRepository from "./detailsrepository";
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
-
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
@@ -26,6 +20,10 @@ class Home extends React.Component {
     this.setState({ valor: e.target.value });
   };
 
+  error() {
+    this.setState({ object: {}, repository: [], validationState: "error" });
+  }
+
   keyPress = event => {
     this.setState({ validationState: "warning" });
     if (event.key === "Enter") {
@@ -38,8 +36,9 @@ class Home extends React.Component {
     let url = "https://api.github.com/users/" + user;
     fetch(url).then(async response => {
       if (!response.ok) {
-        this.setState({ validationState: "error" });
+        this.error();
         console.warn(response);
+        return;
       }
 
       let json = await response.json();
@@ -56,10 +55,14 @@ class Home extends React.Component {
       if (!response.ok) {
         this.setState({ validationState: "error" });
         console.warn(response);
+        return;
       }
 
       let json = await response.json();
       this.setState({ repository: json });
+
+      // this.props.setData(json);
+      this.props.history.push("/schedule");
       console.log(json);
     });
   }

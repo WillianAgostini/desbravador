@@ -13,6 +13,7 @@ class Details extends Component {
           <div className="container">
             <div className="row">
               <img
+                alt={true}
                 src={this.props.userDetails.avatar_url}
                 className="img-circle img-responsive col-xs-3 col-md-2"
               />
